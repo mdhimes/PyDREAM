@@ -66,14 +66,10 @@ def run_dream(parameters, likelihood, nchains=5, niterations=50000, start=None, 
     pool = _setup_mp_dream_pool(nchains, niterations, step_instance, start_pt=start, mp_context=mp_context)
     try:
         if tempering:
-
             sampled_params, log_ps = _sample_dream_pt(nchains, niterations, step_instance, start, pool, verbose=verbose)
-
         else:
-
             if type(start) is list:
                 args = zip([step_instance]*nchains, [niterations]*nchains, start, [verbose]*nchains, [nverbose]*nchains)
-
             else:
                 args = list(zip([step_instance]*nchains, [niterations]*nchains, [start]*nchains, [verbose]*nchains, [nverbose]*nchains))
 
