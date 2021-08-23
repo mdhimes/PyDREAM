@@ -5,8 +5,7 @@ import random
 from . import Dream_shared_vars
 from datetime import datetime
 import traceback
-import multiprocessing as mp
-from multiprocessing import pool
+import multiprocess as mp
 import time
 
 class Dream():
@@ -856,7 +855,7 @@ class Dream():
         #If using multi-try and running in parallel farm out proposed points to process pool.
         if parallel:
             args = list(zip([self] * multitry, np.squeeze(proposed_pts)))
-            with pool.Pool(multitry, context=self.mp_context) as p:
+            with mp.pool.Pool(multitry, context=self.mp_context) as p:
                 logps = p.map(call_logp, args)
             log_priors = [val[0] for val in logps]
             log_likes = [val[1] for val in logps]
@@ -1001,7 +1000,7 @@ def metrop_select(mr, q, q0):
 # copyright NIPY developers, licensed under the Apache 2.0 license.
 
 # Pythons 3.4-3.7.0, and 3.7.1 have three different implementations of
-# pool.Pool().Process(), and the type of the result varies based on the default
+# mp.pool.Pool().Process(), and the type of the result varies based on the default
 # multiprocessing context, so we need to dynamically patch the daemon property
 
 
@@ -1059,7 +1058,7 @@ except AttributeError:
     pass
 
 
-class DreamPool(pool.Pool):
+class DreamPool(mp.pool.Pool):
     def __init__(self, processes=None, initializer=None, initargs=(),
                  maxtasksperchild=None, context=None):
         if context is None:

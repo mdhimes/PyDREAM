@@ -2,7 +2,7 @@
 branch = True
 omit = pydream/tests/*
 source=pydream
-concurrency=multiprocessing
+concurrency=multiprocess
 
 [report]
 show_missing = True
