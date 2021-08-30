@@ -336,11 +336,11 @@ class Dream():
             if not np.array_equal(q0, q_new):
                 if self.multitry==1:
                     if self.verbose:
-                        print('Accepted point.  New logp: ',q_logp,' old logp: ',self.last_logp, ' at temperature: ',T)
+                        print('Iter', self.iter, ': Accepted point.  New logp: ',q_logp,' old logp: ',self.last_logp, ' at temperature: ',T)
                     
                 else:
                     if self.verbose:
-                        print('Accepted point.  New logp: ',q_logp,' old logp: ',self.last_logp,' weight proposed: ',log_ps,' weight ref: ',ref_log_ps,' ratio: ',np.sum(weight_proposed)/np.sum(weight_reference),' at temperature: ',T)
+                        print('Iter', self.iter, ': Accepted point.  New logp: ',q_logp,' old logp: ',self.last_logp,' weight proposed: ',log_ps,' weight ref: ',ref_log_ps,' ratio: ',np.sum(weight_proposed)/np.sum(weight_reference),' at temperature: ',T)
                     
                 self.last_logp = q_logp_noT
                 self.last_prior = q_prior
@@ -349,11 +349,11 @@ class Dream():
             else:
                 if self.multitry==1:
                     if self.verbose:
-                        print('Did not accept point.  Kept old logp: ',self.last_logp,' Tested logp: ',q_logp,' at temperature: ',T)
+                        print('Iter', self.iter, ': Did not accept point.  Kept old logp: ',self.last_logp,' Tested logp: ',q_logp,' at temperature: ',T)
                 
                 else:
                     if self.verbose:
-                        print('Did not accept point.  Kept old logp: ',self.last_logp,' Tested logp: ',q_logp,' weight proposed: ',log_ps,' weight ref: ',ref_log_ps,' ratio: ',np.sum(weight_proposed)/np.sum(weight_reference),' at temperature: ',T)
+                        print('Iter', self.iter, ': Did not accept point.  Kept old logp: ',self.last_logp,' Tested logp: ',q_logp,' weight proposed: ',log_ps,' weight ref: ',ref_log_ps,' ratio: ',np.sum(weight_proposed)/np.sum(weight_reference),' at temperature: ',T)
                 
         
             #Place new point in history given history thinning rate
